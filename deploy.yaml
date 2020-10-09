@@ -17,6 +17,7 @@ spec:
       containers:
       - name: minigateway
         image: ${REPOSITORY_TAG}
+        imagePullPolicy: Never
         resources:
           requests:
             memory: 200Mi
