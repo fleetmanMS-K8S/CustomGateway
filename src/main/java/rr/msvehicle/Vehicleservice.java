@@ -4,7 +4,9 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-  @Service
+import java.math.BigDecimal;
+
+@Service
   class Vehicleservice {
 
    // @Autowired
@@ -14,6 +16,9 @@ import org.springframework.stereotype.Service;
   //  private LoadBalancerClient balancer;
    @Autowired
    private Remotecall remoteservice;
+
+   @Autowired
+   private RemoteCallPos remotecallpos;
 
     @HystrixCommand(fallbackMethod = "handleservice")
     public String getvehcicledetails(){
@@ -40,6 +45,18 @@ import org.springframework.stereotype.Service;
     public String handleservice(){
         return "No Vehicle Tracked handled with histrix fallback method";
     }
+
+    @HystrixCommand(fallbackMethod = "handleservicepos")
+    public Position getvehiclepos(){
+
+        Position postioncoordinates = remotecallpos.getlatestvehicleposition();
+        return postioncoordinates;
+
+    }
+
+      public Position handleservicepos(){
+          return new Position(BigDecimal.valueOf(1.5),BigDecimal.valueOf(1.5));
+      }
 
 
 
