@@ -32,5 +32,11 @@ pipeline {
                     sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
           }
       }
+      
+      stage('Deploying HPA') {
+          steps {
+                    sh 'envsubst < ${WORKSPACE}/hpagateway.yaml | kubectl apply -f -'
+          }
+      }
    }
 }
