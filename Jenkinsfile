@@ -5,7 +5,7 @@ pipeline {
 
 
      SERVICE_NAME = "CustomGateway"
-     REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/${ORGANIZATION_NAME}-customgateway:${BUILD_ID}"
+     REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/customgateway:${BUILD_ID}"
    }
 
    stages {
